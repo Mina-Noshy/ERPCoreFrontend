@@ -5,11 +5,11 @@
       opened="true">
     <mat-toolbar>Menu</mat-toolbar>
 
-    <!--side bar-->
+    <!--side bar--> 
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item routerLink="/dashboard">dashboard</a>
+      <a mat-list-item routerLink="/categories">categories</a>
+      <a mat-list-item routerLink="/products">products</a>
     </mat-nav-list>
 
   </mat-sidenav>
@@ -24,12 +24,16 @@
       </button>
 
       <!--top bar-->
-      <span>ERPCore</span>
+        <a mat-list-item routerLink="/">
+          ERP Core
+        </a>
 
     </mat-toolbar>
 
     <!--body-->
-    <app-dashboard></app-dashboard>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
 
   </mat-sidenav-content>
 </mat-sidenav-container>
