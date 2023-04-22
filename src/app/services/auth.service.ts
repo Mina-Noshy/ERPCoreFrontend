@@ -9,7 +9,10 @@ export class AuthService {
 
   isAuthorize():boolean
   {
-    return false;
+    let curr_user = localStorage.getItem('user_info');
+    
+    if(curr_user) return true;
+    else return false;
   }
 
   login():boolean
@@ -28,5 +31,12 @@ export class AuthService {
   {
     localStorage.setItem("user_info", "mina");
     return true;
+  }
+
+  getUsername():string
+  {
+    let username = localStorage.getItem("user_info");
+    if(username) return username;
+    else return "";
   }
 }
