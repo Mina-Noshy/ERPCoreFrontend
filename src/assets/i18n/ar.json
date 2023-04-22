@@ -1,0 +1,43 @@
+{
+    "app":
+    {
+        "app_name": "ERP Core",
+        "app_description":"نظام اداره موارد المؤسسه المتطور, هو نظام نسريع جدا ومتطور جدا",
+        "dashboard":"لوحه التحكم"
+    },
+    "auth":
+    {
+        "login":"تسجيل دخول",
+        "logout":"تسجيل خروج",
+        "register":"انشاء حساب",
+        "forget_password":"نسيت كلمه المرور",
+        "reset_password":"اعاده ضبط كلمه المرور",
+        "password":"كلمه المرور",
+        "user_name":"اسم المستخدم",
+        "name": "الاسم",
+        "email":"البريد الالكتروني",
+        "mobile":"الهاتف"
+    },
+    "messages":
+    {
+        "msg_login_failed":"اسم المستخدم او كلمه المرور غير صحيحه",
+        "msg_email_exists":"هذا البريد مستخدم بالفعل"
+    },
+    "erp":
+    {
+        "expire_date":"تاريخ انتهاء الصلاحيه",
+        "price":"السعر",
+        "quantity":"الكميه",
+        "units":"الوحدات",
+        "discount":"الخصم",
+        "categories":"الاصناف",
+        "category":"الصنف",
+        "products":"المنتجات",
+        "product":"المنتج"
+    },
+    "common":
+    {
+        "date":"التاريخ",
+        "birthdate":"تاريخ الميلاد"
+    }
+}

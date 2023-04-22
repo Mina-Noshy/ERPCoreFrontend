@@ -1,0 +1,43 @@
+{
+    "app":
+    {
+        "app_name": "ERP Core",
+        "app_description":"ERP core system is very fast, very creative",
+        "dashboard":"Dashboard"
+    },
+    "auth":
+    {
+        "login":"Login",
+        "logout":"Logout",
+        "register":"Register",
+        "forget_password":"Forget password",
+        "reset_password":"Reset password",
+        "password":"Password",
+        "user_name":"Username",
+        "name": "Name",
+        "email":"Email",
+        "mobile":"Mobile"
+    },
+    "messages":
+    {
+        "msg_login_failed":"Username or password is invalid!",
+        "msg_email_exists":"This email has been already used!"
+    },
+    "erp":
+    {
+        "expire_date":"Expire date",
+        "price":"Price",
+        "quantity":"Quantity",
+        "units":"Units",
+        "discount":"Discount",
+        "categories":"Categories",
+        "category":"Category",
+        "products":"Products",
+        "product":"Product"
+    },
+    "common":
+    {
+        "date":"Date",
+        "birthdate":"Birthdate"
+    }
+}

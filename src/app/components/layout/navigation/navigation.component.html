@@ -1,11 +1,9 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      opened="true">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" opened="true">
     <mat-toolbar>Menu</mat-toolbar>
 
-    <!--side bar--> 
+    <!--side bar-->
     <mat-nav-list>
       <a mat-list-item routerLink="/dashboard">dashboard</a>
       <a mat-list-item routerLink="/categories">categories</a>
@@ -15,18 +13,22 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
 
       <!--top bar-->
-        <a mat-list-item routerLink="/">
-          ERP Core
-        </a>
+      <a mat-button routerLink="/">
+        <b>{{'app.app_name' | translate}}</b>
+      </a>
+
+      <span class="spacer"></span>
+      <a mat-button routerLink="/">{{'auth.login' | translate}}</a>
+
+      <mat-select placeholder="language" (selectionChange)="translateLanguageTo($event.value)" [value]="app_lang"
+        style="width: 150px; background: white; padding: 5px; border-radius: 5px;">
+        <mat-option *ngFor="let language of translate.getLangs()" [value]="language">{{ language }}</mat-option>
+      </mat-select>
 
     </mat-toolbar>
 

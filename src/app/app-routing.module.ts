@@ -6,10 +6,6 @@ const routes: Routes =
   {
     path: '',
     loadChildren: ()=> import('./modules/routings/routings.module').then(m => m.RoutingsModule),
-  },
-  {
-    path: '**',
-    redirectTo: 'not-found'
   }
 ];
 
