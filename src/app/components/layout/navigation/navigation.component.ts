@@ -6,19 +6,20 @@ import { TranslateService } from '@ngx-translate/core';
 import { Directionality } from '@angular/cdk/bidi';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { LocalStorageValues } from 'src/app/static-values/local-storage-values';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit
+export class NavigationComponent
 {
-  is_authorize = false;
-  user_name = '';
+  isAuthorize = false;
+  username = '';
 
-  app_lang:string|null = "ar";
-  app_langs: any[] = [
+  appLang:string|null = "ar";
+  appLangs: any[] = [
     { code: 'ar', name: 'Arabic' },
     { code: 'en', name: 'English' },
   ];
@@ -37,37 +38,38 @@ export class NavigationComponent implements OnInit
               private breakpointObserver: BreakpointObserver)
   {
     
-    translate.addLangs(this.app_langs.map(item => item.code));
+    translate.addLangs(this.appLangs.map(item => item.code));
 
-    this.app_lang = localStorage.getItem("app_lang");
-    if (this.app_lang == null) 
+    this.appLang = localStorage.getItem(LocalStorageValues.app_lang);
+    if (this.appLang == null) 
     {
-      this.app_lang = "ar";
-      translate.setDefaultLang(this.app_lang);
+      this.appLang = "ar";
+      translate.setDefaultLang(this.appLang);
     }
     else
     {
-      translate.setDefaultLang(this.app_lang);
+      translate.setDefaultLang(this.appLang);
     }
-    //this.dir.change(this.app_lang == "ar" ? 'rtl' : 'ltr');
+    //this.dir.change(this.appLang == "ar" ? 'rtl' : 'ltr');
+    this.checkAuthorization()
   } 
   
-  ngOnInit(): void 
+  checkAuthorization(): void 
   {
-    this.is_authorize = this.authService.isAuthorize();
-    this.user_name = this.authService.getUsername();
+    this.isAuthorize = this.authService.isAuthorize();
+    this.username = this.authService.getUserDetails()?.username?? '';
   }
 
   translateLanguageTo(lang: string) 
   {
-    localStorage.setItem("app_lang", lang);
+    localStorage.setItem(LocalStorageValues.app_lang, lang);
     this.translate.use(lang);
-    //this.dir.change(this.app_lang == "ar" ? 'rtl' : 'ltr');
+    //this.dir.change(this.appLang == "ar" ? 'rtl' : 'ltr');
   }
 
   logout():void
   {
     this.authService.logout();
-    this.ngOnInit();
+    this.checkAuthorization();
   }
 }

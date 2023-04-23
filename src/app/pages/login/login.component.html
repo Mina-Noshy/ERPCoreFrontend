@@ -1,22 +1,40 @@
-<mat-card style="text-align: center; margin: 50px;">
-    <mat-card-content>
-        <mat-card-title style="font-weight: bold;">
-            Login Page
-        </mat-card-title>
-        <mat-card-content style="font-weight: bold;">
-            welcome to login page
-        </mat-card-content>
-        <mat-card-footer>
-            <a mat-flat-button href="/"  style="margin-top: 100px;  color: blue;">
-                go to home 
-                <mat-icon>home</mat-icon> 
-            </a>
-        </mat-card-footer>
-    </mat-card-content>
-</mat-card>
-<div style="text-align: center;">
 
-    <button mat-raised-button color="primary" (click)="login()">login</button>
-    <button mat-raised-button color="accent" (click)="logout()">logout</button>
+<mat-card class="form-center">
+
+    <mat-card-header style="text-align: center;">
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>Please enter your credentials</mat-card-subtitle>
+    </mat-card-header>
     
-</div>
+    <mat-card-content>
+      <!-- display error message if any -->
+      <div style="color: red; margin: 20px 0px;">{{error}}</div>
+
+      <!-- login form -->
+      <form (ngSubmit)="login()">
+        
+        <!-- username field -->
+        <mat-form-field appearance="outline" style="display: block;">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <!-- password field -->
+        <mat-form-field appearance="outline" style="display: block;">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password" required>
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+
+        <!-- submit button -->
+        <div style="display: flex;">
+            <button mat-raised-button color="primary" type="submit">Login</button>
+            <span class="spacer"></span>
+            <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30"></mat-progress-spinner>
+        </div>
+
+
+    </form>
+    </mat-card-content>
+  </mat-card>

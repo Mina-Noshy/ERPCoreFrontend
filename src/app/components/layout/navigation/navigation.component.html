@@ -23,16 +23,16 @@
       </a>
 
       <span class="spacer"></span>
-      <b *ngIf="is_authorize" mat-button>{{user_name}}</b>
+      <mat-label *ngIf="isAuthorize" mat-button>{{username}}</mat-label>
       <span class="spacer"></span>
 
-      <a mat-button *ngIf="!is_authorize" routerLink="/login">{{'auth.login' | translate}}</a>
+      <a mat-button *ngIf="!isAuthorize" routerLink="/login">{{'auth.login' | translate}}</a>
 
-      <button mat-button *ngIf="is_authorize" (click)="logout()">{{'auth.logout' | translate}}</button>
+      <button mat-button *ngIf="isAuthorize" (click)="logout()">{{'auth.logout' | translate}}</button>
 
-      <mat-select placeholder="language" (selectionChange)="translateLanguageTo($event.value)" [value]="app_lang"
+      <mat-select placeholder="language" (selectionChange)="translateLanguageTo($event.value)" [value]="appLang"
         style="width: 110px; background: white; padding: 5px; border-radius: 5px;">
-        <mat-option *ngFor="let language of app_langs" [value]="language.code">{{ language.name }}</mat-option>
+        <mat-option *ngFor="let language of appLangs" [value]="language.code">{{ language.name }}</mat-option>
       </mat-select>
 
     </mat-toolbar>

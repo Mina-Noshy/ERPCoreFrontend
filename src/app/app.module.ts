@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 // begin translate
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 // end translate
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +23,8 @@ import { HomeComponent } from './components/layout/home/home.component';
 import { BidiModule } from '@angular/cdk/bidi';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { CustomHttpInterceptor } from './settings/CustomHttpInterceptor';
+import { FormsModule } from '@angular/forms';
 
 
 // Factory function required during AOT compilation
@@ -46,11 +48,11 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatrialImportsModule,
-    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -59,8 +61,11 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
       }
     }),
     BidiModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

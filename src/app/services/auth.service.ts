@@ -1,42 +1,45 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UserDetailsVM } from '../view-models/user-details-vm';
+import { LoginVM } from '../view-models/login-vm';
+import { LocalStorageValues } from '../static-values/local-storage-values';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   isAuthorize():boolean
   {
-    let curr_user = localStorage.getItem('user_info');
+    let currUser = this.getUserDetails();
     
-    if(curr_user) return true;
+    if(currUser?.isAuthenticated) return true;
     else return false;
   }
 
-  login():boolean
+  login(credintials:LoginVM) : any
   {
-    localStorage.setItem("user_info", "mina");
-    return true;
+    return this.http.post('/auth/getToken', credintials);
   }
 
-  logout():boolean
+  logout():void
   {
-    localStorage.removeItem("user_info");
-    return true;
+    localStorage.removeItem(LocalStorageValues.user_details);
   }
 
   register():boolean
   {
-    localStorage.setItem("user_info", "mina");
-    return true;
+    return false;
   }
 
-  getUsername():string
+  getUserDetails():UserDetailsVM
   {
-    let username = localStorage.getItem("user_info");
-    if(username) return username;
-    else return "";
+    let userJson = localStorage.getItem(LocalStorageValues.user_details);
+
+    if(userJson) return JSON.parse(userJson) as UserDetailsVM;
+    else return new UserDetailsVM();
   }
 }
