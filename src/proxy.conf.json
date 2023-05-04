@@ -1,8 +1,8 @@
 {
-    "/api/*": {
-      "target": "http://testangular.epms.freemyip.com",
-      "secure": false,
-      "logLevel": "debug"
-    }
+  "/api/*": {
+    "target": "http://testangular.epms.freemyip.com",
+    "secure": false,
+    "logLevel": "debug"
   }
+}
   

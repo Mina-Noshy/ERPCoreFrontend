@@ -1,5 +1,5 @@
-export class LocalStorageValues 
+export const LocalStorageValues =
 {
-    static user_details = 'user_details';
-    static app_lang = 'app_lang';
+    user_details: 'user_details',
+    app_lang: 'app_lang'
 }

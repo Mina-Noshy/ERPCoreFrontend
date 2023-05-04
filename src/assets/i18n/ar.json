@@ -1,43 +1,54 @@
 {
-    "app":
-    {
+    "app": {
         "app_name": "ERP Core",
-        "app_description":"نظام اداره موارد المؤسسه المتطور, هو نظام نسريع جدا ومتطور جدا",
-        "dashboard":"لوحه التحكم"
+        "app_description": "نظام اداره موارد المؤسسه المتطور, هو نظام نسريع جدا ومتطور جدا",
+        "dashboard": "لوحه التحكم",
+        "home": "الرئيسيه",
+        "about": "حول",
+        "contact_us": "اتصل بنا",
+        "subscribe": "اشتراك",
+        "copyright": "حقوق النشر"
     },
-    "auth":
-    {
-        "login":"تسجيل دخول",
-        "logout":"تسجيل خروج",
-        "register":"انشاء حساب",
-        "forget_password":"نسيت كلمه المرور",
-        "reset_password":"اعاده ضبط كلمه المرور",
-        "password":"كلمه المرور",
-        "user_name":"اسم المستخدم",
+    "auth": {
+        "login": "تسجيل دخول",
+        "logout": "تسجيل خروج",
+        "register": "انشاء حساب",
+        "forget_password": "نسيت كلمه المرور",
+        "reset_password": "اعاده ضبط كلمه المرور",
+        "password": "كلمه المرور",
+        "confirm_password": "تاكيد كلمه المرور",
+        "username": "اسم المستخدم",
+        "first_name": "الاسم الاول",
+        "last_name": "الاسم الاخير",
         "name": "الاسم",
-        "email":"البريد الالكتروني",
-        "mobile":"الهاتف"
+        "email": "البريد الالكتروني",
+        "mobile": "الهاتف"
     },
-    "messages":
-    {
-        "msg_login_failed":"اسم المستخدم او كلمه المرور غير صحيحه",
-        "msg_email_exists":"هذا البريد مستخدم بالفعل"
+    "messages": {
+        "msg_login_failed": "اسم المستخدم او كلمه المرور غير صحيحه",
+        "msg_email_exists": "هذا البريد مستخدم بالفعل",
+        "msg_enter_credentials": "الرجاء ادخال اسم المستخدم وكلمه المرور",
+        "msg_newsletter_subscribe": "اشترك في النشرة الإخبارية الخاصة بنا",
+        "msg_login_success": "تم تسجيل الدخول بنجاح",
+        "msg_logout_success": "تم تسجيل الخروج بنجاح",
+        "msg_password_reset_success": "تم اعاده ضبط كلمه المرور بنجاح",
+        "msg_password_reset_failed": "فشل اعاده تعيين كلمه المرور",
+        "msg_password_change_success": "تم تغيير كلمه المرور بنجاح",
+        "msg_password_change_failed": "فشل تغيير كلمه المرور"
     },
-    "erp":
-    {
-        "expire_date":"تاريخ انتهاء الصلاحيه",
-        "price":"السعر",
-        "quantity":"الكميه",
-        "units":"الوحدات",
-        "discount":"الخصم",
-        "categories":"الاصناف",
-        "category":"الصنف",
-        "products":"المنتجات",
-        "product":"المنتج"
+    "erp": {
+        "expire_date": "تاريخ انتهاء الصلاحيه",
+        "price": "السعر",
+        "quantity": "الكميه",
+        "units": "الوحدات",
+        "discount": "الخصم",
+        "categories": "الاصناف",
+        "category": "الصنف",
+        "products": "المنتجات",
+        "product": "المنتج"
     },
-    "common":
-    {
-        "date":"التاريخ",
-        "birthdate":"تاريخ الميلاد"
+    "common": {
+        "date": "التاريخ",
+        "birthdate": "تاريخ الميلاد"
     }
 }

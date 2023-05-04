@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 // begin translate
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 // end translate
@@ -15,21 +15,34 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardComponent } from './components/layout/dashboard/dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MatrialImportsModule } from './modules/matrial-imports/matrial-imports.module';
-import { CategoryIndexComponent } from './components/categories/category-index/category-index.component';
-import { CategoryFormComponent } from './components/categories/category-form/category-form.component';
-import { ProductFormComponent } from './components/products/product-form/product-form.component';
-import { ProductIndexComponent } from './components/products/product-index/product-index.component';
 import { HomeComponent } from './components/layout/home/home.component';
 import { BidiModule } from '@angular/cdk/bidi';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { CustomHttpInterceptor } from './settings/CustomHttpInterceptor';
 import { FormsModule } from '@angular/forms';
+import { UserListComponent } from './components/account/user-list/user-list.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { LocalStorageValues } from './static-values/local-storage-values';
 
 
 // Factory function required during AOT compilation
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function appInitializerFactory(translate: TranslateService) {
+  
+  return () => {
+    translate.addLangs(['ar', 'en']);
+
+    let appLang = localStorage.getItem(LocalStorageValues.app_lang);
+    if (appLang == null) appLang = "ar";
+    
+    translate.setDefaultLang(appLang);
+    return translate.use(appLang).toPromise();
+  };
 }
 
 @NgModule({
@@ -38,13 +51,12 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     NavigationComponent,
     DashboardComponent,
     NotFoundComponent,
-    CategoryIndexComponent,
-    CategoryFormComponent,
-    ProductFormComponent,
-    ProductIndexComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    UserListComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +76,17 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     FormsModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true }
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: CustomHttpInterceptor, 
+      multi: true 
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFactory,
+      deps: [TranslateService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,10 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap-icons/font/bootstrap-icons';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face 
+{
+    font-family: Cairo-Regular;
+    src: url(assets/fonts/Cairo-Regular.ttf);
+}
+@font-face 
+{
+    font-family: Cairo-Bold;
+    src: url(assets/fonts/Cairo-Bold.ttf);
+}
+@font-face 
+{
+    font-family: Cairo-Medium;
+    src: url(assets/fonts/Cairo-Medium.ttf);
+}
+
+@media (min-width: 768px) 
+{
+    html 
+    {
+        font-size: 16px;
+    }
+}
+
+html 
+{
+    position: relative;
+    min-height: 100%;
+}
+  
+body 
+{
+    font-family: Cairo-Regular, sans-serif; 
+    padding-top: 70px; 
+    background-color: #f6f6f6;
+}
 
 
 .spacer
 {
     flex-grow: 1;
+}
+
+[class^="mat"]:not(.mat-icon), 
+[class^="mdc"]:not(.mat-icon)
+{
+    font-family: Cairo-Regular;
+}
+
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus 
+{
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }

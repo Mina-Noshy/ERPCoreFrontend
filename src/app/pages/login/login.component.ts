@@ -11,58 +11,37 @@ import { UserDetailsVM } from 'src/app/view-models/user-details-vm';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent 
-{
-  email = '';
-  password = '';
+export class LoginComponent {
+  credintils: LoginVM = new LoginVM();
   loading = false;
   error = '';
 
-  constructor(private authService:AuthService,
-              private router:Router)
-  {
+  constructor(private authService: AuthService,
+    private router: Router) {
   }
 
-  login():void
-  {
+  login(): void {
     this.loading = true;
     this.error = '';
-   
-    let credintils:LoginVM = 
-    {
-      username: this.email,
-      password: this.password
-    }
 
-    this.authService.login(credintils)
-    .pipe(
-      catchError(error => {
-        let body = error.error as UserDetailsVM;
+    this.authService.login(this.credintils).subscribe(
+      userDetails => {
+        if (userDetails?.isAuthenticated) {
+          this.loading = false;
+          this.error = userDetails?.message ?? '';
+          this.router.navigate(['/dashboard']);
+        } 
+        else {
+          this.loading = false;
+          this.error = userDetails?.message ?? '';
+        }
+      },
+      error => {
         this.loading = false;
-        this.error = body?.message?? '';
-        return '';
-      })
-    )
-    .subscribe((response: UserDetailsVM) => 
-    {
-      if(response?.isAuthenticated)
-      {
-        this.router.navigate(['/']);
-        localStorage.setItem(LocalStorageValues.user_details, JSON.stringify(response))
+        this.error = 'Something went wrong!';
+        console.error('Error:', error);
       }
-      else
-      {
-        this.loading = false;
-        this.error = response?.message?? '';
-      }
-    });
-
-  }
-
-  logout():void
-  {
-    this.authService.logout();
-    this.router.navigate(['/']);
+    );
   }
 
 }

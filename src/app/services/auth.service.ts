@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { UserDetailsVM } from '../view-models/user-details-vm';
 import { LoginVM } from '../view-models/login-vm';
 import { LocalStorageValues } from '../static-values/local-storage-values';
+import { RegisterVM } from '../view-models/register-vm';
 
 @Injectable({
   providedIn: 'root'
@@ -11,35 +12,43 @@ import { LocalStorageValues } from '../static-values/local-storage-values';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-
-  isAuthorize():boolean
-  {
-    let currUser = this.getUserDetails();
-    
-    if(currUser?.isAuthenticated) return true;
-    else return false;
+ 
+  
+  login(credintials:LoginVM):Observable<UserDetailsVM>
+  { 
+    return this.http.post('auth/getToken', credintials).pipe(
+      map((response: any) => {
+        let userDetails = response as UserDetailsVM;
+        
+        localStorage.setItem(LocalStorageValues.user_details, JSON.stringify(userDetails));
+        return userDetails;
+      }),
+      catchError(error => {
+        // Handle any errors that occur during the request
+        console.error('Error:', error);
+        throw error;
+      })
+    );
   }
-
-  login(credintials:LoginVM) : any
-  {
-    return this.http.post('/auth/getToken', credintials);
-  }
-
+ 
   logout():void
   {
     localStorage.removeItem(LocalStorageValues.user_details);
   }
 
-  register():boolean
+  register(credintials: RegisterVM):Observable<UserDetailsVM>
   {
-    return false;
+    return this.http.post('auth/register', credintials).pipe(
+      map((response: any) => {
+        let userDetails = response as UserDetailsVM;
+        return userDetails;
+      }),
+      catchError(error => {
+        // Handle any errors that occur during the request
+        console.error('Error:', error);
+        throw error;
+      })
+    );
   }
 
-  getUserDetails():UserDetailsVM
-  {
-    let userJson = localStorage.getItem(LocalStorageValues.user_details);
-
-    if(userJson) return JSON.parse(userJson) as UserDetailsVM;
-    else return new UserDetailsVM();
-  }
 }

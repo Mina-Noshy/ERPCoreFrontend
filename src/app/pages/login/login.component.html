@@ -1,40 +1,34 @@
-
-<mat-card class="form-center">
-
-    <mat-card-header style="text-align: center;">
-      <mat-card-title>Login</mat-card-title>
-      <mat-card-subtitle>Please enter your credentials</mat-card-subtitle>
-    </mat-card-header>
-    
-    <mat-card-content>
-      <!-- display error message if any -->
-      <div style="color: red; margin: 20px 0px;">{{error}}</div>
-
-      <!-- login form -->
-      <form (ngSubmit)="login()">
-        
-        <!-- username field -->
-        <mat-form-field appearance="outline" style="display: block;">
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
-          <mat-icon matSuffix>person</mat-icon>
-        </mat-form-field>
-
-        <!-- password field -->
-        <mat-form-field appearance="outline" style="display: block;">
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password" required>
-          <mat-icon matSuffix>lock</mat-icon>
-        </mat-form-field>
-
-        <!-- submit button -->
-        <div style="display: flex;">
-            <button mat-raised-button color="primary" type="submit">Login</button>
-            <span class="spacer"></span>
-            <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30"></mat-progress-spinner>
-        </div>
+  <div class="text-center mt-4 name">
+    <b>{{'auth.login' | translate}}</b>
+    <p>{{'messages.msg_enter_credentials' | translate}}</p>
+    <p style="color: red; margin: 20px 0px;">{{error}}</p>
+  </div>
 
 
-    </form>
-    </mat-card-content>
-  </mat-card>
+<div class="wrapper">
+  <div class="logo">
+      <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt="" />
+  </div>
+  <div class="text-center mt-4 name">
+    {{'app.app_name' | translate}}
+  </div>
+  <form class="p-3 mt-3" (ngSubmit)="login()">
+      <div class="form-field d-flex align-items-center">
+          <span class="far fa-user"></span>
+          <input type="text" id="userName" placeholder="{{'auth.username' | translate}}" [(ngModel)]="credintils.username" name="username" required />
+      </div>
+      <div class="form-field d-flex align-items-center">
+          <span class="fas fa-key"></span>
+          <input type="password" id="pwd" placeholder="{{'auth.password' | translate}}" [(ngModel)]="credintils.password" name="password" required />
+      </div>
+      
+      <div class="text-center mt-3" style="display: flex;">
+        <button type="submit" class="btn">Login</button>
+        <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30"></mat-progress-spinner>  
+      </div>
+      
+  </form>
+  <div class="text-center fs-6">
+      <a routerLink="/forget-password">{{'auth.forget_password' | translate}}</a> - <a routerLink="/register">{{'auth.register' | translate}}</a>
+  </div>
+</div>
