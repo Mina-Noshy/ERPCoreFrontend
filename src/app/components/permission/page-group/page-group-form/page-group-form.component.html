@@ -1,0 +1,45 @@
+<div class="wrapper">
+    <div class="logo">
+        <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt="" />
+    </div>
+    <div class="text-center mt-4 name">
+        {{'app.app_name' | translate}}
+    </div>
+    <form class="p-3 mt-3" (ngSubmit)="register()">
+
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" id="firstName" placeholder="{{'auth.first_name' | translate}}"
+                [(ngModel)]="credintils.firstName" name="firstName" required />
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" id="lastName" placeholder="{{'auth.last_name' | translate}}"
+                [(ngModel)]="credintils.lastName" name="lastName" required />
+        </div>
+
+
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" id="userName" placeholder="{{'auth.username' | translate}}"
+                [(ngModel)]="credintils.username" name="username" required />
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="email" id="email" placeholder="{{'auth.email' | translate}}" [(ngModel)]="credintils.email"
+                name="email" required />
+        </div>
+
+
+
+        <div class="text-center mt-3" style="display: flex;">
+            <button type="submit" class="btn">{{'common.save' | translate}}</button>
+            <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30"></mat-progress-spinner>
+            <button type="submit" class="btn btn-warper-cancel">{{'common.cancel' | translate}}</button>
+        </div>
+
+    </form>
+    <div class="text-center fs-6">
+        <a routerLink="/">{{'app.home' | translate}}</a>
+    </div>
+</div>

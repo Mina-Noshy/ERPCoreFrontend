@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StringVM } from '../view-models/string-vm';
 import { Observable, catchError, map } from 'rxjs';
-import { UserVM } from '../view-models/user-vm';
+import { UserListVM } from '../view-models/user-list-vm';
 import { LocalStorageValues } from '../static-values/local-storage-values';
 
 @Injectable({
@@ -12,10 +12,10 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  getAllUsers():Observable<UserVM[]> {
+  getAllUsers():Observable<UserListVM[]> {
     return this.http.get('account/getAllUsers').pipe(
       map((response: any) => {
-        let users = response as UserVM[];
+        let users = response as UserListVM[];
         return users;
       }),
       catchError(error => {
@@ -26,9 +26,24 @@ export class AccountService {
     );
   }
  
-  toggleConfirmeEmail(model: StringVM):Observable<boolean> {
+  deleteUser(userId: StringVM):Observable<boolean> {
 
-    return this.http.post('account/toggleEmailConfirmation', model).pipe(
+    return this.http.post('account/deleteUser', userId).pipe(
+      map((response: any) => {
+        let result = response as boolean;
+        return result;
+      }),
+      catchError(error => {
+        // Handle any errors that occur during the request
+        console.error('Error:', error);
+        throw error;
+      })
+    );
+  }
+
+  toggleConfirmeEmail(email: StringVM):Observable<boolean> {
+
+    return this.http.post('account/toggleEmailConfirmation', email).pipe(
       map((response: any) => {
         let result = response as boolean;
         return result;

@@ -24,17 +24,48 @@
         "email": "البريد الالكتروني",
         "mobile": "الهاتف"
     },
-    "messages": {
+    "permission": {
+        "login": "تسجيل دخول",
+        "register": "انشاء حساب",
+        "panel": "لوحه التحكم",
+        "users": "المستخدمين",
+        "permissions": "الصلاحيات"
+    },
+    "msg": {
         "msg_login_failed": "اسم المستخدم او كلمه المرور غير صحيحه",
         "msg_email_exists": "هذا البريد مستخدم بالفعل",
         "msg_enter_credentials": "الرجاء ادخال اسم المستخدم وكلمه المرور",
         "msg_newsletter_subscribe": "اشترك في النشرة الإخبارية الخاصة بنا",
         "msg_login_success": "تم تسجيل الدخول بنجاح",
         "msg_logout_success": "تم تسجيل الخروج بنجاح",
+
         "msg_password_reset_success": "تم اعاده ضبط كلمه المرور بنجاح",
         "msg_password_reset_failed": "فشل اعاده تعيين كلمه المرور",
         "msg_password_change_success": "تم تغيير كلمه المرور بنجاح",
-        "msg_password_change_failed": "فشل تغيير كلمه المرور"
+        "msg_password_change_failed": "فشل تغيير كلمه المرور",
+
+        "msg_account_confirmed": "تم تفعيل حساب المستخدم",
+        "msg_account_unconfirmed": "تم الغاء تفعيل حساب المستخدم",
+
+        "msg_unknown_error": "لقد حدث خطا ما",
+        "msg_email_sent": "تم ارسال البريد الالكتروني بنجاح",
+
+        "msg_deleted_success": "تم الحذف بنجاح",
+        "msg_updated_success": "تم التعديل بنجاح",
+        "msg_created_success": "تم الانشاء بنجاح",
+        "msg_inserted_success": "تم الاضافه بنجاح",
+        
+        "msg_delete_failed": "فشلت عمليه الحذف",
+        "msg_update_failed": "فشلت عمليه التعديل",
+        "msg_create_failed": "فشلت عمليه الانشاء",
+        "msg_insert_failed": "فشلت عمليه الاضافه",
+
+        "msg_delete_confirmation": "هل أنت متأكد من أنك تريد حذف هذا العنصر ؟",
+        "msg_update_confirmation": "هل أنت متأكد من أنك تريد تعديل هذا العنصر ؟",
+        "msg_save_confirmation": "هل أنت متأكد من أنك تريد حفظ هذا العنصر ؟",
+
+        "msg_not_found": "هذه الصفحه غير موجوده او تم اعاده تسميتها",
+        "msg_access_denied": "ليس لديك صلاحيه للوصول الي هذه الصفحه"
     },
     "erp": {
         "expire_date": "تاريخ انتهاء الصلاحيه",
@@ -49,6 +80,23 @@
     },
     "common": {
         "date": "التاريخ",
-        "birthdate": "تاريخ الميلاد"
+        "birthdate": "تاريخ الميلاد",
+        "ok": "موافق",
+        "yes": "نعم",
+        "no": "لا",
+        "cancel": "الغاء",
+        
+        "create": "تنشاء",
+        "insert": "اضافه",
+        "update": "تعديل",
+        "edit": "تعديل",
+        "delete": "حذف",
+        "save": "حفظ",
+        "back": "رجوع"
+    },
+    "other":{
+        "oops": "اوبس",
+        "404_not_found": "404 - صفحه غير موجوده",
+        "access_denied": "رفض الوصول"
     }
 }

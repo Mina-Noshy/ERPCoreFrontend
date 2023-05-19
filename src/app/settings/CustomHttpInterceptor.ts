@@ -38,7 +38,7 @@ export class CustomHttpInterceptor implements HttpInterceptor
             }),
             catchError(refreshError => {
               // Logout the user if the refresh token is invalid or expired
-              this.tokenService.clearLocalTokens();
+              this.tokenService.deleteUserDetails();
 
               // Rethrow the error to the caller
               return throwError(refreshError);

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { LocalStorageValues } from 'src/app/static-values/local-storage-values';
-import { LoginVM } from 'src/app/view-models/login-vm';
+import { LoginFormVM } from 'src/app/view-models/login-form-vm';
 import { UserDetailsVM } from 'src/app/view-models/user-details-vm';
 
 @Component({
@@ -12,7 +12,7 @@ import { UserDetailsVM } from 'src/app/view-models/user-details-vm';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  credintils: LoginVM = new LoginVM();
+  credintils: LoginFormVM = new LoginFormVM();
   loading = false;
   error = '';
 

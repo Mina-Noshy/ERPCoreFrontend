@@ -1,16 +1,10 @@
-<mat-card style="text-align: center; margin: 50px;">
-    <mat-card-content>
-        <mat-card-title style="font-weight: bold;">
-            404
-        </mat-card-title>
-        <mat-card-content style="font-weight: bold;">
-            Page Not Found
-        </mat-card-content>
-        <mat-card-footer>
-            <a mat-flat-button href="/"  style="margin-top: 100px;  color: blue;">
-                go to home 
-                <mat-icon>home</mat-icon> 
-            </a>
-        </mat-card-footer>
-    </mat-card-content>
-</mat-card>
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h1>{{'other.oops' | translate}}</h1>
+        </div>
+        <h2>{{'other.404_not_found' | translate}}</h2>
+        <p>{{'msg.msg_not_found' | translate}}</p>
+        <a routerLink="/">{{'app.home' | translate}}</a>
+    </div>
+</div>

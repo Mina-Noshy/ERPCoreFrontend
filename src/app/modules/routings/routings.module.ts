@@ -9,6 +9,8 @@ import { LoginComponent } from 'src/app/pages/login/login.component';
 import { RegisterComponent } from 'src/app/pages/register/register.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { UserListComponent } from 'src/app/components/account/user-list/user-list.component';
+import { AccessDeniedComponent } from 'src/app/pages/access-denied/access-denied.component';
+import { PermissionGuard } from 'src/app/guards/permission.guard';
 
 const routes: Routes =
   [
@@ -24,12 +26,12 @@ const routes: Routes =
         {
           path: 'dashboard',
           component: DashboardComponent,
-          canActivate: [AuthGuard]
+          canActivate: [AuthGuard, PermissionGuard]
         },
         {
           path: 'users',
           component: UserListComponent,
-          canActivate: [AuthGuard]
+          canActivate: [AuthGuard, PermissionGuard]
         },
       ]
     },
@@ -48,6 +50,10 @@ const routes: Routes =
     {
       path: 'not-found',
       component: NotFoundComponent
+    },
+    {
+      path: 'access-denied',
+      component: AccessDeniedComponent
     },
     {
       path: '**',

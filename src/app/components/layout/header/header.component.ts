@@ -1,11 +1,12 @@
 import { Directionality } from '@angular/cdk/bidi';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
 import { LocalStorageValues } from 'src/app/static-values/local-storage-values';
+import { PermissionGroupListVM } from 'src/app/view-models/permission-group-list-vm';
+import { PermissionListVM } from 'src/app/view-models/permission-list-vm';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,9 @@ import { LocalStorageValues } from 'src/app/static-values/local-storage-values';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  permissions:PermissionListVM[]=[];
+  permissionGroups:PermissionGroupListVM[]=[];
+  
   isAuthorize = false;
   username = '';
 
@@ -34,11 +38,7 @@ export class HeaderComponent {
     this.checkAuthorization()
   }
 
-  checkAuthorization(): void {
-    this.isAuthorize = this.tokenService.isAuthorize();
-    this.username = this.tokenService.getUserDetails()?.firstName ?? '';
-  }
-
+  
   translateLanguageTo(lang: string) {
     localStorage.setItem(LocalStorageValues.app_lang, lang);
     this.translate.use(lang);
@@ -46,8 +46,43 @@ export class HeaderComponent {
   }
 
   logout(): void {
-    this.authService.logout();
+    this.authService.logout().subscribe(x => {});
     this.checkAuthorization();
     this.router.navigate(['/login']);
+  }
+
+  private checkAuthorization(): void {
+    let currUser = this.tokenService.getUserDetails();
+
+    this.isAuthorize = currUser?.isAuthenticated?? false;
+
+    this.username = currUser.firstName + ' ' + currUser.lastName;
+
+    this.permissions = currUser?.permissions??[];
+
+    // get distinct group names
+    this.generatePermissionGroup();
+  }
+
+
+  private generatePermissionGroup():void{
+    this.permissionGroups = this.permissions.reduce((accumulator: PermissionGroupListVM[], current: PermissionListVM) => {
+      const existingGroup = accumulator.find((group) => 
+        group.name === current.groupName &&
+        group.icon === current.groupIcon &&
+        group.text === current.groupText
+      );
+      
+      if (!existingGroup) {
+        accumulator.push({
+          name: current.groupName,
+          icon: current.groupIcon,
+          text: current.groupText
+        });
+      }
+      
+      return accumulator;
+    }, []);
+
   }
 }

@@ -1,4 +1,4 @@
-import { PermissionVM } from "./permission-vm";
+import { PermissionListVM } from "./permission-list-vm";
 
 export class UserDetailsVM
 {
@@ -17,5 +17,5 @@ export class UserDetailsVM
     refreshToken?: string;
 
     roles?: string[];
-    permissions?:PermissionVM[]
+    permissions?:PermissionListVM[]
 }

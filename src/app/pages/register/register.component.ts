@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { RegisterVM } from 'src/app/view-models/register-vm';
-import { UserDetailsVM } from 'src/app/view-models/user-details-vm';
+import { RegisterFormVM } from 'src/app/view-models/register-form-vm';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +9,7 @@ import { UserDetailsVM } from 'src/app/view-models/user-details-vm';
 })
 export class RegisterComponent 
 {
-  credintils:RegisterVM = new RegisterVM();
+  credintils:RegisterFormVM = new RegisterFormVM();
   successProcess = false;
   loading = false;
   error = '';

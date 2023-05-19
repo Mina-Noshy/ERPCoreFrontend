@@ -25,6 +25,13 @@ import { UserListComponent } from './components/account/user-list/user-list.comp
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { LocalStorageValues } from './static-values/local-storage-values';
+import { DeleteConfirmationDialogComponent } from './components/dialog/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
+import { PageIndexComponent } from './components/permission/page/page-index/page-index.component';
+import { PageFormComponent } from './components/permission/page/page-form/page-form.component';
+import { PermissionIndexComponent } from './components/permission/permission/permission-index/permission-index.component';
+import { PageGroupFormComponent } from './components/permission/page-group/page-group-form/page-group-form.component';
+import { PageGroupIndexComponent } from './components/permission/page-group/page-group-index/page-group-index.component';
 
 
 // Factory function required during AOT compilation
@@ -57,6 +64,14 @@ export function appInitializerFactory(translate: TranslateService) {
     UserListComponent,
     HeaderComponent,
     FooterComponent,
+    DeleteConfirmationDialogComponent,
+    AccessDeniedComponent,
+    PageIndexComponent,
+    PageFormComponent,
+    PermissionIndexComponent,
+    PageGroupFormComponent,
+    PageGroupIndexComponent,
+    
   ],
   imports: [
     BrowserModule,

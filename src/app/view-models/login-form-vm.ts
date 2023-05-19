@@ -1,4 +1,4 @@
-export class LoginVM 
+export class LoginFormVM 
 {
     username?:string;
     password?:string;

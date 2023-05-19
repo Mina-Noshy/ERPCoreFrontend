@@ -1,4 +1,4 @@
-export class RegisterVM 
+export class RegisterFormVM 
 {
     firstName?: string;
     lastName?: string;

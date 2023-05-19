@@ -1,6 +1,6 @@
   <div class="text-center mt-4 name">
     <b>{{'auth.login' | translate}}</b>
-    <p>{{'messages.msg_enter_credentials' | translate}}</p>
+    <p>{{'msg.msg_enter_credentials' | translate}}</p>
     <p style="color: red; margin: 20px 0px;">{{error}}</p>
   </div>
 
@@ -23,7 +23,7 @@
       </div>
       
       <div class="text-center mt-3" style="display: flex;">
-        <button type="submit" class="btn">Login</button>
+        <button type="submit" class="btn">{{'auth.login' | translate}}</button>
         <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30"></mat-progress-spinner>  
       </div>
       

@@ -1,4 +1,4 @@
-export class UserVM 
+export class UserListVM 
 {    
     id?: string;
     fullName?: string;

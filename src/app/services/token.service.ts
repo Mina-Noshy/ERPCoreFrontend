@@ -4,14 +4,13 @@ import { Observable, catchError, map } from 'rxjs';
 import { UserDetailsVM } from '../view-models/user-details-vm';
 import { StringVM } from '../view-models/string-vm';
 import { LocalStorageValues } from '../static-values/local-storage-values';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
 
-  constructor(private http: HttpClient, private authService:AuthService) { }
+  constructor(private http: HttpClient) { }
 
   isAuthorize():boolean
   {
@@ -21,11 +20,6 @@ export class TokenService {
     else return false;
   }
 
-  clearLocalTokens():void
-  {
-    this.authService.logout();
-  }
-  
   getUserDetails():UserDetailsVM
   {
     let userJson = localStorage.getItem(LocalStorageValues.user_details);
@@ -37,6 +31,11 @@ export class TokenService {
   setUserDetails(model: UserDetailsVM):void
   {
     localStorage.setItem(LocalStorageValues.user_details, JSON.stringify(model));
+  }
+
+  deleteUserDetails():void
+  {
+    localStorage.removeItem(LocalStorageValues.user_details);
   }
 
   getAccessToken():string

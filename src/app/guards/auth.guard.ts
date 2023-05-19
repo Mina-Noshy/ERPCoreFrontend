@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(private tokenService:TokenService, private router:Router)
   {
-  }
+  } 
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
       }
       else
       {
-        alert('you must login first!');
+        alert('you must login first');
         this.router.navigate(['/login']);
         return false;
       }
