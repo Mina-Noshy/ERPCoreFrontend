@@ -26,12 +26,11 @@ export class AccountService {
     );
   }
  
-  deleteUser(userId: StringVM):Observable<boolean> {
+  deleteUser(userId: StringVM):Observable<StringVM> {
 
     return this.http.post('account/deleteUser', userId).pipe(
       map((response: any) => {
-        let result = response as boolean;
-        return result;
+        return response as StringVM;
       }),
       catchError(error => {
         // Handle any errors that occur during the request
@@ -41,12 +40,11 @@ export class AccountService {
     );
   }
 
-  toggleConfirmeEmail(email: StringVM):Observable<boolean> {
+  toggleConfirmeEmail(email: StringVM):Observable<StringVM> {
 
     return this.http.post('account/toggleEmailConfirmation', email).pipe(
       map((response: any) => {
-        let result = response as boolean;
-        return result;
+        return response as StringVM;
       }),
       catchError(error => {
         // Handle any errors that occur during the request

@@ -38,6 +38,11 @@ export class TokenService {
     localStorage.removeItem(LocalStorageValues.user_details);
   }
 
+  getUserName():string
+  {
+    return this.getUserDetails()?.email ?? '';
+  }
+
   getAccessToken():string
   {
     return this.getUserDetails()?.token ?? '';

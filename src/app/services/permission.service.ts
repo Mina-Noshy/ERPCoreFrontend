@@ -1,23 +1,49 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError, map } from 'rxjs';
+import { PageGroupFormVM } from '../view-models/page-group-form-vm';
 import { TokenService } from './token.service';
+import { StringVM } from '../view-models/string-vm';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PermissionService {
 
-  constructor(private tokenService:TokenService) { }
+  constructor(private http: HttpClient, private tokenService: TokenService) { } 
 
-  hasAccess(url: string): boolean{
-    
-    const currUser = this.tokenService.getUserDetails();
-    
-    if(currUser.permissions?.find(x => x.pageUrl === url)){
-      return true;
-    }
-    else{
-      return false;
-    }
+  insertPageGroup(model: PageGroupFormVM):Observable<StringVM>
+  {
+    let currUserName = this.tokenService.getUserName();
+    model.createdBy = currUserName;
 
+    return this.http.post('pageGroups/insert', model).pipe(
+      map((response: any) => {
+        return response as StringVM;
+      }),
+      catchError(error => {
+        // Handle any errors that occur during the request
+        console.error('Error:', error);
+        throw error;
+      })
+    );
   }
-}
+
+  updatePageGroup(model: PageGroupFormVM):Observable<StringVM>
+  {
+    let currUserName = this.tokenService.getUserName();
+    model.modifiedBy = currUserName;
+
+    return this.http.post(`pageGroups/update/${model.id}`, model).pipe(
+      map((response: any) => {
+        return response as StringVM;
+      }),
+      catchError(error => {
+        // Handle any errors that occur during the request
+        console.error('Error:', error);
+        throw error;
+      })
+    );
+  }
+
+} 

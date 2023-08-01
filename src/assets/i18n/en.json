@@ -93,7 +93,19 @@
         "edit": "Edit",
         "delete": "Delete",
         "save": "Save",
-        "back": "Back"
+        "back": "Back",
+
+        "search": "Search",
+        "name": "Name",
+        "code": "Code",
+        "description": "Description",
+        "status": "Status",
+        "action": "Action",
+        "new": "New",
+        "icon": "Icon",
+        "type": "Type",
+        "text":"Text",
+        "title": "Title"
     },
     "other":{
         "oops": "Oops",

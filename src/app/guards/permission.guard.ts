@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { PermissionService } from '../services/permission.service';
+import { TokenService } from '../services/token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PermissionGuard implements CanActivate {
 
-  constructor(private permissionService:PermissionService, private router:Router)
+  constructor(private tokenService:TokenService, private router:Router)
   {
   }
   
@@ -18,15 +18,16 @@ export class PermissionGuard implements CanActivate {
     
       const url = route?.routeConfig?.path?? '';
 
-      if(this.permissionService.hasAccess(url))
-      {
+      const currUser = this.tokenService.getUserDetails();
+    
+      if(currUser.permissions?.find(x => x.pageUrl === url)){
         return true;
       }
-      else
-      {
+      else{
         this.router.navigate(['/access-denied']);
         return false;
       }
+
   }
   
 }

@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { RegisterFormVM } from 'src/app/view-models/register-form-vm';
+import { DialogService } from 'src/app/services/dialog.service';
+import { PermissionService } from 'src/app/services/permission.service';
+import { PageGroupFormVM } from 'src/app/view-models/page-group-form-vm';
 
 @Component({
   selector: 'app-page-group-form',
@@ -9,19 +11,51 @@ import { RegisterFormVM } from 'src/app/view-models/register-form-vm';
 })
 export class PageGroupFormComponent {
 
-  credintils:RegisterFormVM = new RegisterFormVM();
-  successProcess = false;
+  model: PageGroupFormVM = new PageGroupFormVM();
+
   loading = false;
-  error = '';
 
-  confirmPassword = '';
+  constructor(public dialogRef: MatDialogRef<PageGroupFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private permissionService:PermissionService,
+    private dialogService: DialogService) {
 
-  register(){
+  }
+
+  save(): void {
+    this.loading = true;
+
+    if (this.model?.id == null)
+    {
+      this.permissionService.insertPageGroup(this.model).subscribe(
+        res => {
+          this.loading = false;
+          this.model = new PageGroupFormVM();
+          this.dialogService.showInsertedSuccessAlert();
+        },
+        error => {
+          this.loading = false;
+          console.error('Error:', error);
+          this.dialogService.showInsertFailedAlert();
+        }
+      );
+    }
+    else
+    {
+      this.permissionService.updatePageGroup(this.model).subscribe(
+        res => {
+          this.loading = false;
+          this.model = new PageGroupFormVM();
+          this.dialogService.showInsertedSuccessAlert();
+        },
+        error => {
+          this.loading = false;
+          console.error('Error:', error);
+          this.dialogService.showInsertFailedAlert();
+        }
+      );
+    }
     
   }
 
-  constructor(public dialogRef: MatDialogRef<PageGroupFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any){
-      
-    }
 }
